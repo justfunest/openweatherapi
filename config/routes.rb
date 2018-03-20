@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :cities, :only => [:index, :create, :show]
     resources :city_weathers, :only => [:index, :create, :show]
     resources :city_weather_conditions, :only => [:index, :create, :show]
+    get 'forecast', to: 'forecast#index'
   end
 
 end
