@@ -2,7 +2,7 @@ module Api
   class CitiesController < ApplicationController
     def index
       cities = City.order('name')
-      render json: {status: 'ok', message: 'Loaded cities', data: cities}, status: :ok
+      render json: cities
     end
 
     def show
@@ -15,7 +15,7 @@ module Api
       if city
         render json: city, status: :ok
       else
-        render json:  {status: 'error', message: 'City not found'}, status: :not_found
+        render json: {status: 'error', message: 'City not found'}, status: :not_found
       end
 
     end
@@ -23,9 +23,9 @@ module Api
     def create
       city = City.new(city_params)
       if city.save
-        render json: {status: 'ok', message: 'City saved', data: city}, status: :created
+        render json: city, status: :created
       else
-        render json:  {status: 'error', message: 'City not saved', errors: city.errors}, status: :unprocessable_entity
+        render json: {status: 'error', message: 'City not saved', errors: city.errors}, status: :unprocessable_entity
       end
     end
 
