@@ -1,5 +1,5 @@
 module Api
-  class CityWeatherConditionsController < ApplicationController
+  class CityWeatherConditionsController < BaseController
     def index
       cities = CityWeatherCondition.order('name')
       render json: cities
@@ -25,7 +25,7 @@ module Api
       if city_weather_condition.save
         render json: city_weather_condition, status: :created
       else
-        render json: {status: 'error', message: 'City weather condition not saved', errors: city_weather_condition.errors}, status: :unprocessable_entity
+        render json: {status: 'error', message: 'City weather condition not saved', errors: city_weather_condition.errors}, status: :conflict
       end
     end
 

@@ -1,0 +1,201 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "OpenWeatherMap API",
+    "version" : "1.0.0",
+    "title" : "OpenWeatherMap API"
+  },
+  "host" : "0.0.0.0:3000",
+  "basePath" : "/api",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/cities" : {
+      "get" : {
+        "tags" : [ "city" ],
+        "summary" : "searches in",
+        "description" : "Shows all known cities\n",
+        "operationId" : "searchCity",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "maximum number of records to return",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#city_response.yaml"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BadInputItem"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "city" ],
+        "summary" : "adds an city",
+        "description" : "Adds an city to the system",
+        "operationId" : "addCity",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "city",
+          "description" : "City create.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CityBody"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "item created"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/cities/{cityId}" : {
+      "get" : {
+        "tags" : [ "city" ],
+        "summary" : "searches in",
+        "description" : "Get city by id\n",
+        "operationId" : "searchCityy",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "cityId",
+          "in" : "path",
+          "description" : "Numeric ID of the city to get.",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CityResponse"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "CityBody" : {
+      "type" : "object",
+      "required" : [ "iso_code_alpha_2", "latitude", "longitude", "name" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "example" : "Tallinn"
+        },
+        "longitude" : {
+          "type" : "number",
+          "format" : "float",
+          "example" : 24.7454
+        },
+        "latitude" : {
+          "type" : "number",
+          "format" : "float",
+          "example" : 34.2323
+        },
+        "iso_code_alpha_2" : {
+          "type" : "string",
+          "example" : "EE"
+        },
+        "population" : {
+          "type" : "number",
+          "format" : "float",
+          "example" : 30000.0
+        }
+      },
+      "example" : {
+        "iso_code_alpha_2" : "EE",
+        "latitude" : 34.2323,
+        "name" : "Tallinn",
+        "longitude" : 24.7454,
+        "population" : 30000.0
+      }
+    },
+    "CityResponse" : {
+      "type" : "object",
+      "required" : [ "coordinates", "id", "iso_code_alpha_2", "name", "population" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "int32",
+          "example" : "1"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Tallinn"
+        },
+        "coordinates" : {
+          "$ref" : "#/definitions/Coordinate"
+        },
+        "iso_code_alpha_2" : {
+          "type" : "string",
+          "example" : "EE"
+        },
+        "population" : {
+          "type" : "string",
+          "example" : "3232323"
+        }
+      },
+      "example" : {
+        "iso_code_alpha_2" : "EE",
+        "name" : "Tallinn",
+        "coordinates" : {
+          "latitude" : "59.4372",
+          "longitude" : "24.7454"
+        },
+        "id" : "1",
+        "population" : "3232323"
+      }
+    },
+    "Coordinate" : {
+      "required" : [ "latitude", "longitude" ],
+      "properties" : {
+        "longitude" : {
+          "type" : "string",
+          "format" : "float",
+          "example" : "24.7454"
+        },
+        "latitude" : {
+          "type" : "string",
+          "format" : "float",
+          "example" : "59.4372"
+        }
+      },
+      "example" : {
+        "latitude" : "59.4372",
+        "longitude" : "24.7454"
+      }
+    }
+  }
+}

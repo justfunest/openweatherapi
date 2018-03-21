@@ -1,5 +1,5 @@
 module Api
-  class WeatherConditionGroupsController < ApplicationController
+  class WeatherConditionGroupsController < BaseController
     def index
       groups = WeatherConditionGroup.order('name')
       render json: groups
@@ -25,7 +25,7 @@ module Api
       if group.save
         render json: group, status: :created
       else
-        render json:  {status: 'error', message: 'Group not saved', errors: group.errors}, status: :unprocessable_entity
+        render json:  {status: 'error', message: 'Group not saved', errors: group.errors}, status: :conflict
       end
     end
 

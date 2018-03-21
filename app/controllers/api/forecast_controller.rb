@@ -1,5 +1,5 @@
 module Api
-  class ForecastController < ApplicationController
+  class ForecastController < BaseController
       def index
         forecast_days = 7
         query_end_date = Time.now.to_date.to_datetime

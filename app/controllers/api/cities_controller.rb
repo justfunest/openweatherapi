@@ -1,7 +1,15 @@
 module Api
-  class CitiesController < ApplicationController
+  class CitiesController < BaseController
     def index
       cities = City.order('name')
+      if params[:limit]
+        unless (params[:limit].to_i > 0)
+          render json: {status: 'error', message: 'bad input parameter'}, status: :bad_request and return
+        else
+          cities = cities.limit(params[:limit])
+        end
+      end
+
       render json: cities
     end
 
@@ -15,7 +23,7 @@ module Api
       if city
         render json: city, status: :ok
       else
-        render json: {status: 'error', message: 'City not found'}, status: :not_found
+        render json: {status: 'error', message: 'city not found'}, status: :not_found
       end
 
     end
@@ -25,7 +33,7 @@ module Api
       if city.save
         render json: city, status: :created
       else
-        render json: {status: 'error', message: 'City not saved', errors: city.errors}, status: :unprocessable_entity
+        render json: {status: 'error', message: 'city not saved', errors: city.errors}, status: :conflict
       end
     end
 

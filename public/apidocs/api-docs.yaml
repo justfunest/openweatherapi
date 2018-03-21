@@ -1,0 +1,447 @@
+swagger: '2.0'
+info:
+  description: OpenWeatherMap API
+  version: 1.0.0
+  title: OpenWeatherMap API
+  # put the contact info for your development or API team
+
+paths:
+  /cities:
+    get:
+      tags:
+      - city
+      summary: gets all cities
+      operationId: searchCity
+      description: |
+        Shows all known cities
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: limit
+        description: maximum number of records to return
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CityResponse'
+        400:
+          description: bad input parameter
+    post:
+      tags:
+      - city
+      summary: adds an city
+      operationId: addCity
+      description: Adds an city to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: city
+        description: City create.
+        schema:
+          $ref: '#/definitions/CityBody'
+      responses:
+        201:
+          description: item created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+  /cities/{cityId}:
+    get:
+      tags:
+      - city
+      summary: searches city by id
+      operationId: searchCityy
+      description: |
+        Get city by id
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: cityId
+        type: integer
+        required: true
+        description: Numeric ID of the city to get.
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CityResponse'
+        404:
+          description: not found
+  /weather_condition_groups:
+    get:
+      tags:
+      - weather_condition_groups
+      summary: shows all weather condition groups
+      operationId: searchWeatherConditionGroup
+      description: |
+        Shows all weather condition groups
+      produces:
+      - application/json
+      responses:
+        200:
+          description: search results matching criteria
+        400:
+          description: bad input parameter
+    post:
+      tags:
+      - weather_condition_groups
+      summary: adds an weather condition group
+      operationId: addWeatherConditionGroup
+      description: Adds an weather condition group to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: name
+        description: Weather condition group to create.
+        schema:
+          $ref: '#/definitions/WeatherConditionGroupBody'
+      responses:
+        201:
+          description: item created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+  /weather_condition_groups/{weatherConditionGroupId}:
+    get:
+      tags:
+      - weather_condition_groups
+      summary: searches weather condition group by id
+      operationId: searchWeatherConditionGroupId
+      description: |
+        Get weather condition group by id
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: weatherConditionGroupId
+        type: integer
+        required: true
+        description: Numeric ID of the weather condition group id to get.
+      responses:
+        200:
+          description: search results matching criteria
+        404:
+          description: not found
+  /weather_conditions:
+    get:
+      tags:
+      - weather_conditions
+      summary: gets all weather conditions
+      operationId: searchCity
+      description: |
+        Shows all known weather conditions
+      produces:
+      - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/WeatherConditionResponse'
+        400:
+          description: bad input parameter
+    post:
+      tags:
+      - weather_conditions
+      summary: adds an weather condition
+      operationId: addWeatherCondition
+      description: Adds an weather condition to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: weather_conditions
+        description: Weather Condition create.
+        schema:
+          $ref: '#/definitions/WeatherConditionBody'
+      responses:
+        201:
+          description: item created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+  /weather_conditions/{weatherConditionId}:
+    get:
+      tags:
+      - weather_conditions
+      summary: searches weather condition by id
+      operationId: searchWeatherCondition
+      description: |
+        Get weather condition by id
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: weatherConditionId
+        type: integer
+        required: true
+        description: Numeric ID of the weather condition to get.
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/WeatherConditionResponse'
+        404:
+          description: not found
+
+  /city_weathers:
+    get:
+      tags:
+      - city_weathers
+      summary: gets all weather conditions
+      operationId: searchCityWeather
+      description: |
+        Shows all city weathers
+      produces:
+      - application/json
+      responses:
+        200:
+          description: search results matching criteria
+        400:
+          description: bad input parameter
+    post:
+      tags:
+      - city_weathers
+      summary: adds an city weather
+      operationId: addCityWeather
+      description: Adds an city weather to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: city_weathers
+        description: City weather create.
+        schema:
+          $ref: '#/definitions/CityWeatherBody'
+      responses:
+        201:
+          description: item created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+  /city_weathers/{cityWeatherId}:
+    get:
+      tags:
+      - city_weathers
+      summary: searches city weather by id
+      operationId: searchCityWeather
+      description: |
+        Get city weather by id
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: cityWeatherId
+        type: integer
+        required: true
+        description: Numeric ID of the weather condition to get.
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CityWeatherResponse'
+        404:
+          description: not found
+definitions:
+  CityWeatherBody:
+    type: object
+    required:
+      - temperature
+      - temperature_minimum
+      - temperature_maximum
+      - pressure_sea_level_default
+      - pressure_ground_level
+      - humidity
+      - cloudiness_percentage
+      - wind_speed
+      - wind_degree
+      - pressure_seal_level
+      - time_of_data_forecasted
+      - city_id
+    properties:
+      temperature:
+        type: number
+        format: float
+        example: 20
+      temperature_minimum:
+        type: number
+        format: float
+        example: 20
+      temperature_maximum:
+        type: number
+        format: float
+        example: 20
+      pressure_sea_level_default:
+        type: number
+        format: float
+        example: 20
+      pressure_seal_level:
+        type: number
+        format: float
+        example: 20
+      pressure_ground_level:
+        type: number
+        format: float
+        example: 20
+      humidity:
+        type: number
+        format: float
+        example: 20
+      cloudiness_percentage:
+        type: number
+        format: float
+        example: 20
+      wind_speed:
+        type: number
+        format: float
+        example: 20
+      wind_degree:
+        type: number
+        format: float
+        example: 20
+      time_of_data_forecasted:
+        type: string
+        example: 20
+      city_id:
+        type: number
+        format: int32
+        example: 1
+  WeatherConditionBody:
+    type: object
+    required:
+      - description
+      - icon
+      - weather_condition_group_id
+    properties:
+      description:
+        type: string
+        example: clear sky
+      icon:
+        type: string
+        example: 01d
+      weather_condition_group_id:
+        type: number
+        format: int32
+        example: 1
+  WeatherConditionGroupBody:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: Clear skys
+  CityBody:
+    type: object
+    required:
+      - name
+      - longitude
+      - latitude
+      - iso_code_alpha_2
+    properties:
+      name:
+        type: string
+        example: Tallinn
+      longitude:
+        type: number
+        format: float
+        example: 24.7454
+      latitude:
+        type: number
+        format: float
+        example: 34.2323
+      iso_code_alpha_2:
+        type: string
+        example: EE
+      population:
+        type: number
+        format: float
+        example: 30000
+  WeatherConditionResponse:
+    type: object
+    required:
+    - id
+    - description
+    - icon
+    - weather_condition_group
+    properties:
+      id:
+        type: string
+        format: int32
+        example: 1
+      description:
+        type: string
+        example: clear sky
+      icon:
+        type: string
+        example: 0d1
+      weather_condition_group:
+        $ref: '#/definitions/WeatherConditionGroupResponse'
+  WeatherConditionGroupResponse:
+    type: object
+    required:
+    - id
+    - name
+    properties:
+      id:
+        type: string
+        format: int32
+        example: 1
+      name:
+        type: string
+        example: clear sky
+  CityResponse:
+    type: object
+    required:
+    - id
+    - name
+    - coordinates
+    - iso_code_alpha_2
+    - population
+    properties:
+      id:
+        type: string
+        format: int32
+        example: 1
+      name:
+        type: string
+        example: Tallinn
+      coordinates:
+        $ref: '#/definitions/Coordinate'
+      iso_code_alpha_2:
+        type: string
+        example: EE
+      population:
+        type: string
+        example: 3232323
+host: 0.0.0.0:3000
+basePath: /api
+schemes:
+ - http
