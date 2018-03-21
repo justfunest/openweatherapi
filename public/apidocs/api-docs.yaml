@@ -422,7 +422,6 @@ definitions:
     required:
     - id
     - name
-    - coordinates
     - iso_code_alpha_2
     - population
     properties:
@@ -433,8 +432,6 @@ definitions:
       name:
         type: string
         example: Tallinn
-      coordinates:
-        $ref: '#/definitions/Coordinate'
       iso_code_alpha_2:
         type: string
         example: EE

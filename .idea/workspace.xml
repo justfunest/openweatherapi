@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed938174-231a-411b-ad45-d8744b6ad82c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitmodules" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/swagger" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/cities_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/cities_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/city_weather_conditions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/city_weather_conditions_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/city_weathers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/city_weathers_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/forecast_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/forecast_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/weather_condition_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/weather_condition_groups_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/weather_conditions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/weather_conditions_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/weather_condition_group.rb" afterPath="$PROJECT_DIR$/app/models/weather_condition_group.rb" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change beforePath="$PROJECT_DIR$/public/apidocs/api-docs.yaml" afterPath="$PROJECT_DIR$/public/apidocs/api-docs.yaml" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -30,7 +20,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="cities_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cities_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/cities_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="630">
@@ -40,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api-docs.yaml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="api-docs.yaml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/apidocs/api-docs.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="225" column="9" lean-forward="false" selection-start-line="225" selection-start-column="9" selection-end-line="225" selection-end-column="9" />
+            <state relative-caret-position="568">
+              <caret line="430" column="18" lean-forward="false" selection-start-line="430" selection-start-column="18" selection-end-line="430" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -155,6 +145,7 @@
       <find>BadIn</find>
       <find>WeatherConditionBody</find>
       <find>CityWeatherRespo</find>
+      <find>Coordina</find>
     </findStrings>
     <replaceStrings>
       <replace>CityWeather.</replace>
@@ -198,11 +189,11 @@
         <option value="$PROJECT_DIR$/app/models/weather_condition_group.rb" />
         <option value="$PROJECT_DIR$/public/apidocs/api-docs.json" />
         <option value="$PROJECT_DIR$/db/migrate/20180320102738_create_weather_conditions.rb" />
-        <option value="$PROJECT_DIR$/public/apidocs/api-docs.yaml" />
         <option value="$PROJECT_DIR$/app/models/city_weather.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/weather_conditions_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/city_weathers_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/city_weather_conditions_controller.rb" />
+        <option value="$PROJECT_DIR$/public/apidocs/api-docs.yaml" />
       </list>
     </option>
   </component>
@@ -465,12 +456,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1521480337600</updated>
-      <workItem from="1521480339822" duration="69402000" />
+      <workItem from="1521480339822" duration="69971000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69402000" />
+    <option name="totallyTimeSpent" value="69971000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -859,14 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/apidocs/api-docs.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="225" column="9" lean-forward="false" selection-start-line="225" selection-start-column="9" selection-end-line="225" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/city_weather.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -911,6 +894,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="35" column="105" lean-forward="false" selection-start-line="35" selection-start-column="97" selection-end-line="35" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apidocs/api-docs.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="430" column="18" lean-forward="false" selection-start-line="430" selection-start-column="18" selection-end-line="430" selection-end-column="18" />
           <folding />
         </state>
       </provider>
