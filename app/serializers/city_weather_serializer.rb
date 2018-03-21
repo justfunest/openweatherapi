@@ -5,6 +5,7 @@ class CityWeatherSerializer < ActiveModel::Serializer
   has_one :wind
   has_one :rain
   has_one :snow
+  has_many :weather_conditions
 
   def time_of_data_forecasted_unix_timestamp
     Time.parse(object.time_of_data_forecasted.to_s).to_i
