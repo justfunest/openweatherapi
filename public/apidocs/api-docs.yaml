@@ -6,6 +6,26 @@ info:
   # put the contact info for your development or API team
 
 paths:
+  /import_city:
+    get:
+      tags:
+      - import_city
+      summary: import city from openWeatherMap
+      operationId: import_city
+      description: |
+        import city from openWeatherMap
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: city_name
+        description: city name
+        type: string
+      responses:
+        200:
+          description: search results matching criteria
+        400:
+          description: bad input parameter
   /forecast:
     get:
       tags:

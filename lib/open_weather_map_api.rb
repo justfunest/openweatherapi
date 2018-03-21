@@ -8,7 +8,7 @@ class OpenWeatherMapApi
     @app_url = 'http://api.openweathermap.org/'
   end
 
-  def forecast(city, country_code_iso_alpha_2 = nil, days = nil)
+  def forecast(city, country_code_iso_alpha_2 = nil)
 
     url = @app_url + 'data/2.5/forecast?'
 
@@ -23,6 +23,7 @@ class OpenWeatherMapApi
     end
 
     url += "&appid=#{@appid}"
+    puts url
     uri = URI(url)
     response = JSON.parse Net::HTTP.get(uri)
 

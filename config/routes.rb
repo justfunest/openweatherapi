@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :city_weathers, :only => [:index, :create, :show]
     resources :city_weather_conditions, :only => [:index, :create, :show]
     get 'forecast', to: 'forecast#index'
+    get 'import_city', to: 'open_weather_map_api#import_city'
   end
 
 end
