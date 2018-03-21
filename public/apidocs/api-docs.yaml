@@ -6,6 +6,32 @@ info:
   # put the contact info for your development or API team
 
 paths:
+  /forecast:
+    get:
+      tags:
+      - forecast
+      summary: get city weather by cityid
+      operationId: forecast
+      description: |
+        get city weather by cityid
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: limit
+        description: maximum number of records to return
+        type: integer
+        format: int32
+      - in: query
+        name: city_id
+        description: city_id
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: search results matching criteria
+        400:
+          description: bad input parameter
   /cities:
     get:
       tags:
