@@ -15,4 +15,7 @@ class CityWeather < ApplicationRecord
   validates :wind_degree, presence: true, numericality: true
   validates :pressure_sea_level_default, presence: true, numericality: true
   validates :time_of_data_forecasted, presence: true
+  validates :rain_volume, :numericality => true, :allow_nil => true
+  validates :snow_volume, :numericality => true, :allow_nil => true
+  validates :city, uniqueness: { scope: :time_of_data_forecasted }
 end

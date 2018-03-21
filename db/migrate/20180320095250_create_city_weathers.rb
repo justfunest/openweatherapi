@@ -15,8 +15,9 @@ class CreateCityWeathers < ActiveRecord::Migration[5.1]
       t.float :wind_degree
       t.float :rain_volume
       t.float :snow_volume
-      t.timestamp :time_of_data_forecasted
+      t.datetime :time_of_data_forecasted
       t.timestamps
     end
+    add_index :city_weathers, [:city_id, :time_of_data_forecasted], unique: true
   end
 end

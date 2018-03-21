@@ -45,9 +45,10 @@ ActiveRecord::Schema.define(version: 20180320110027) do
     t.float "wind_degree", limit: 24
     t.float "rain_volume", limit: 24
     t.float "snow_volume", limit: 24
-    t.timestamp "time_of_data_forecasted"
+    t.datetime "time_of_data_forecasted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id", "time_of_data_forecasted"], name: "index_city_weathers_on_city_id_and_time_of_data_forecasted", unique: true
     t.index ["city_id"], name: "index_city_weathers_on_city_id"
   end
 
