@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320110027) do
+ActiveRecord::Schema.define(version: 20180322123213) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "name"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 20180320110027) do
     t.datetime "updated_at", null: false
     t.index ["city_id", "time_of_data_forecasted"], name: "index_city_weathers_on_city_id_and_time_of_data_forecasted", unique: true
     t.index ["city_id"], name: "index_city_weathers_on_city_id"
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "email"
+    t.string "api_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "weather_condition_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

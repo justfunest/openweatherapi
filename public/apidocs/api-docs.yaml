@@ -4,14 +4,75 @@ info:
   version: 1.0.0
   title: OpenWeatherMap API
   # put the contact info for your development or API team
-
 paths:
+  /users:
+    get:
+      tags:
+      - user
+      summary: Shows all api users
+      operationId: apiUsers
+      description: |
+         Shows all api users
+      produces:
+      - application/json
+      parameters:
+      responses:
+        200:
+          description: search results matching criteria
+        400:
+          description: bad input parameter
+    post:
+      tags:
+      - user
+      summary: adds an api user
+      operationId: addUser
+      description: Adds an api user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: city
+        description: Create an api user
+        schema:
+          $ref: '#/definitions/UserBody'
+      responses:
+        201:
+          description: item created
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+  /user/{userId}:
+    get:
+      tags:
+      - user
+      summary: search api user by id
+      operationId: searchUser
+      description: |
+        search api user by id
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: userId
+        type: integer
+        required: true
+        description: Numeric ID of the user to get.
+      responses:
+        200:
+          description: search results matching criteria
+        404:
+          description: not found
   /import_city:
     get:
       tags:
       - import_city
       summary: import city from openWeatherMap
-      operationId: import_city
+      security:
+        - ApiKeyAuth: []
+      operationId: importCity
       description: |
         import city from openWeatherMap
       produces:
@@ -31,6 +92,8 @@ paths:
       tags:
       - forecast
       summary: get city weather by cityid
+      security:
+        - ApiKeyAuth: []
       operationId: forecast
       description: |
         get city weather by cityid
@@ -57,6 +120,8 @@ paths:
       tags:
       - city
       summary: gets all cities
+      security:
+        - ApiKeyAuth: []
       operationId: searchCity
       description: |
         Shows all known cities
@@ -81,6 +146,8 @@ paths:
       tags:
       - city
       summary: adds an city
+      security:
+        - ApiKeyAuth: []
       operationId: addCity
       description: Adds an city to the system
       consumes:
@@ -105,6 +172,8 @@ paths:
       tags:
       - city
       summary: searches city by id
+      security:
+        - ApiKeyAuth: []
       operationId: searchCityy
       description: |
         Get city by id
@@ -130,6 +199,8 @@ paths:
       tags:
       - weather_condition_groups
       summary: shows all weather condition groups
+      security:
+        - ApiKeyAuth: []
       operationId: searchWeatherConditionGroup
       description: |
         Shows all weather condition groups
@@ -144,6 +215,8 @@ paths:
       tags:
       - weather_condition_groups
       summary: adds an weather condition group
+      security:
+        - ApiKeyAuth: []
       operationId: addWeatherConditionGroup
       description: Adds an weather condition group to the system
       consumes:
@@ -168,6 +241,8 @@ paths:
       tags:
       - weather_condition_groups
       summary: searches weather condition group by id
+      security:
+        - ApiKeyAuth: []
       operationId: searchWeatherConditionGroupId
       description: |
         Get weather condition group by id
@@ -189,6 +264,8 @@ paths:
       tags:
       - weather_conditions
       summary: gets all weather conditions
+      security:
+        - ApiKeyAuth: []
       operationId: searchCity
       description: |
         Shows all known weather conditions
@@ -207,6 +284,8 @@ paths:
       tags:
       - weather_conditions
       summary: adds an weather condition
+      security:
+        - ApiKeyAuth: []
       operationId: addWeatherCondition
       description: Adds an weather condition to the system
       consumes:
@@ -231,6 +310,8 @@ paths:
       tags:
       - weather_conditions
       summary: searches weather condition by id
+      security:
+        - ApiKeyAuth: []
       operationId: searchWeatherCondition
       description: |
         Get weather condition by id
@@ -251,12 +332,13 @@ paths:
               $ref: '#/definitions/WeatherConditionResponse'
         404:
           description: not found
-
   /city_weathers:
     get:
       tags:
       - city_weathers
       summary: gets all weather conditions
+      security:
+        - ApiKeyAuth: []
       operationId: searchCityWeather
       description: |
         Shows all city weathers
@@ -271,6 +353,8 @@ paths:
       tags:
       - city_weathers
       summary: adds an city weather
+      security:
+        - ApiKeyAuth: []
       operationId: addCityWeather
       description: Adds an city weather to the system
       consumes:
@@ -295,6 +379,8 @@ paths:
       tags:
       - city_weathers
       summary: searches city weather by id
+      security:
+        - ApiKeyAuth: []
       operationId: searchCityWeather
       description: |
         Get city weather by id
@@ -316,6 +402,18 @@ paths:
         404:
           description: not found
 definitions:
+  UserBody:
+    type: object
+    required:
+      - name
+      - email
+    properties:
+      name:
+        type: string
+        example: YourName
+      email:
+        type: string
+        example: first.lastname@gmail.com
   CityWeatherBody:
     type: object
     required:
@@ -484,6 +582,11 @@ definitions:
       population:
         type: string
         example: 3232323
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    name: X-API-KEY
+    in: header
 host: 0.0.0.0:3000
 basePath: /api
 schemes:
