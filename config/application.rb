@@ -31,5 +31,6 @@ module Openweatherapi
     config.api_only = true
     config.active_record.belongs_to_required_by_default = true
     config.autoload_paths << "#{Rails.root}/lib"
+    config.middleware.use Rack::Attack
   end
 end
